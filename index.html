@@ -55,7 +55,7 @@
         $iframe.contents().find("head")
             .append($("<style type='text/css'>form.hs-form,\n" +
                 "        .hs_cos_wrapper .form-title {\n" +
-                "            max-width: 600px;\n" +
+                "            max-width: 980px;\n" +
                 "            display: block;\n" +
                 "            margin: 0 auto;\n" +
                 "        }\n" +
@@ -68,7 +68,9 @@
                 "        /* To center the form submit button */\n" +
                 "        .hs_submit {\n" +
                 "            text-align: center;\n" +
-                "        }</style>"));
+                "        }" +
+                "textarea.hs-input,fieldset.form-columns-1,fieldset.form-columns-2,fieldset.form-columns-3{max-width: 980px}" +
+                "</style>"));
         var $form = $iframe.contents().find('form');
         var $button = $iframe.contents().find("input[type=submit]");
 
