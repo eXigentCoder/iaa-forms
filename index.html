@@ -22,8 +22,9 @@
 
         #loading {
             position: fixed;
-            top: 40%;
-            left: 42%;
+            top: 45%;
+            left: 39%;
+            z-index: 999;
         }
 
         iframe {
@@ -50,8 +51,7 @@
     });
 
     $(window).load(function () {
-        showSpinner();
-        var $iframe =$("#hs-form-iframe-0");
+        var $iframe = $("#hs-form-iframe-0");
         $iframe.contents().find("head")
             .append($("<style type='text/css'>form.hs-form,\n" +
                 "        .hs_cos_wrapper .form-title {\n" +
@@ -70,14 +70,35 @@
                 "            text-align: center;\n" +
                 "        }</style>"));
         var $form = $iframe.contents().find('form');
-        $form.submit(function (event) {
+        var $button = $iframe.contents().find("input[type=submit]");
+
+        $form.submit(function () {
             showSpinner();
+            disableButton($button)
+            var check = setInterval(function () {
+                if ($iframe.contents().find('div.submitted-message').length === 0) {
+                    return;
+                }
+                hideSpinner();
+                clearInterval(check);
+
+            }, 500);
         });
 
     });
 
     function showSpinner() {
         $loading.show();
+    }
+
+    function hideSpinner() {
+        $loading.hide();
+    }
+
+    function disableButton($button) {
+        $button.prop("disabled", true);
+        $button.css("background-color", "#cccccc");
+        $button.css("border-color", "#6b6b6b");
     }
 
 </script>
