@@ -15,23 +15,24 @@
             color: #333;
         }
 
-
         h2 {
             font-size: 2em;
             font-weight: 100;
         }
 
-        #loading{
+        #loading {
             position: fixed;
             top: 40%;
-            left:42%;
+            left: 42%;
         }
 
-        iframe{
+        iframe {
             position: absolute;
-            top:0;
-            left:0;
+            top: 0;
+            left: 0;
         }
+
+
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/shell.js"></script>
@@ -47,12 +48,32 @@
         formId: "7bb3fa81-69c7-4d92-a8e0-e9827a1735a9",
         target: '#bob'
     });
+
     $(window).load(function () {
-        var $form = $("#hs-form-iframe-0").contents().find('form');
-        console.log($form);
+        showSpinner();
+        var $iframe =$("#hs-form-iframe-0");
+        $iframe.contents().find("head")
+            .append($("<style type='text/css'>form.hs-form,\n" +
+                "        .hs_cos_wrapper .form-title {\n" +
+                "            max-width: 600px;\n" +
+                "            display: block;\n" +
+                "            margin: 0 auto;\n" +
+                "        }\n" +
+                "\n" +
+                "        /* To center the form title within a form module */\n" +
+                "        .hs_cos_wrapper .form-title {\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "\n" +
+                "        /* To center the form submit button */\n" +
+                "        .hs_submit {\n" +
+                "            text-align: center;\n" +
+                "        }</style>"));
+        var $form = $iframe.contents().find('form');
         $form.submit(function (event) {
             showSpinner();
         });
+
     });
 
     function showSpinner() {
