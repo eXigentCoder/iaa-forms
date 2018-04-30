@@ -1,74 +1,64 @@
 <html>
-  <head>
+<head>
     <title>Contact Us</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      html, body {
-        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
-        font-weight: 400;
-        font-size: 16px;
-        color: #333;
-      }
+        html, body {
+            font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+            font-weight: 400;
+            font-size: 16px;
+            color: #333;
+        }
 
-      .center-text {
-        text-align: center;
-      }
 
-      main {
-        margin-top: 100px;
-        padding: 20px;
-      }
+        h2 {
+            font-size: 2em;
+            font-weight: 100;
+        }
 
-      img.logo {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-        margin-bottom: 30px;
-      }
+        #loading{
+            position: fixed;
+            top: 40%;
+            left:42%;
+        }
 
-      h2 {
-        font-size: 2em;
-        font-weight: 100;
-      }
-
-      footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 20px;
-      }
-
-      footer p {
-        font-weight: 300;
-        font-size: 1.0em;
-      }
-
-      a {
-        color: #31D8A0;
-        text-decoration: none;
-      }
-
-      a:hover,
-      a:focus {
-        color: #31D8A0;
-      }
+        iframe{
+            position: absolute;
+            top:0;
+            left:0;
+        }
     </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/shell.js"></script>
-  </head>
-  <body>
-    <main class="container">
-      <script>
-          hbspt.forms.create({
-              portalId: "4520783",
-              formId: "7bb3fa81-69c7-4d92-a8e0-e9827a1735a9"
-          });
-      </script>
-    </main>
-  </body>
+</head>
+<body>
+<form id="bob">
+    <img id="loading" src="loading.gif" style="display: none">
+</form>
+<script>
+    var $loading = $('#loading');
+    hbspt.forms.create({
+        portalId: "4520783",
+        formId: "7bb3fa81-69c7-4d92-a8e0-e9827a1735a9",
+        target: '#bob'
+    });
+    $(window).load(function () {
+        var $form = $("#hs-form-iframe-0").contents().find('form');
+        console.log($form);
+        $form.submit(function (event) {
+            showSpinner();
+        });
+    });
+
+    function showSpinner() {
+        $loading.show();
+    }
+
+</script>
+</body>
 </html>
