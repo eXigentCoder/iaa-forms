@@ -47,11 +47,16 @@
     hbspt.forms.create({
         portalId: "4520783",
         formId: "7bb3fa81-69c7-4d92-a8e0-e9827a1735a9",
-        target: '#bob'
+        target: '#bob',
+        errorClass: 'invalid'
     });
 
     $(window).load(function () {
         var $iframe = $("#hs-form-iframe-0");
+        var jqueryScriptBlock = document.createElement("script");
+        jqueryScriptBlock.type = "text/javascript";
+        jqueryScriptBlock.src = "https://code.jquery.com/jquery-2.2.4.min.js";
+        $iframe.contents().find("head").append(jqueryScriptBlock);
         $iframe.contents().find("head")
             .append($("<style type='text/css'>form.hs-form,\n" +
                 "        .hs_cos_wrapper .form-title {\n" +
@@ -74,20 +79,28 @@
         var $form = $iframe.contents().find('form');
         var $button = $iframe.contents().find("input[type=submit]");
 
-        $form.submit(function () {
-            showSpinner();
-            disableButton($button)
-            var check = setInterval(function () {
-                if ($iframe.contents().find('div.submitted-message').length === 0) {
+        $form.submit(function (event) {
+            setTimeout(function () {
+                var invalidFields = $form.find('.invalid').length;
+                if(invalidFields > 0){
                     return;
                 }
-                hideSpinner();
-                clearInterval(check);
-
-            }, 500);
+                showSpinner();
+                disableButton($button)
+                var check = setInterval(function () {
+                    if ($iframe.contents().find('div.submitted-message').length === 0) {
+                        return;
+                    }
+                    hideSpinner();
+                    clearInterval(check);
+                }, 500);
+            },0)
         });
-
     });
+
+    function submitForm() {
+        console.log("HIIII");
+    }
 
     function showSpinner() {
         $loading.show();
