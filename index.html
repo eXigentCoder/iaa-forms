@@ -82,19 +82,21 @@
         $form.submit(function (event) {
             setTimeout(function () {
                 var invalidFields = $form.find('.invalid').length;
-                if(invalidFields > 0){
+                if (invalidFields > 0) {
                     return;
                 }
+                window.scrollTo(0, document.body.scrollHeight);
                 showSpinner();
                 disableButton($button)
                 var check = setInterval(function () {
                     if ($iframe.contents().find('div.submitted-message').length === 0) {
                         return;
                     }
+                    window.scrollTo(0, 0);
                     hideSpinner();
                     clearInterval(check);
                 }, 500);
-            },0)
+            }, 0)
         });
     });
 
