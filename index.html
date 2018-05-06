@@ -27,92 +27,89 @@
             z-index: 999;
         }
 
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
 
     </style>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/shell.js"></script>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+    <!--[if lte IE 8]>
+    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+    <link rel="stylesheet" type="text/css" href="hs.css"></link>
 </head>
 <body>
 <form id="bob">
     <img id="loading" src="loading.gif" style="display: none">
 </form>
 <script>
-    var $loading = $('#loading');
+//    var $loading = $('#loading');
     hbspt.forms.create({
         portalId: "4520783",
         formId: "7bb3fa81-69c7-4d92-a8e0-e9827a1735a9",
-        target: '#bob',
         errorClass: 'invalid'
     });
 
-    $(window).load(function () {
-        var $iframe = $("#hs-form-iframe-0");
-        var jqueryScriptBlock = document.createElement("script");
-        jqueryScriptBlock.type = "text/javascript";
-        jqueryScriptBlock.src = "https://code.jquery.com/jquery-2.2.4.min.js";
-        $iframe.contents().find("head").append(jqueryScriptBlock);
-        $iframe.contents().find("head")
-            .append($("<style type='text/css'>form.hs-form,\n" +
-                "        .hs_cos_wrapper .form-title {\n" +
-                "            max-width: 980px;\n" +
-                "            display: block;\n" +
-                "            margin: 0 auto;\n" +
-                "        }\n" +
-                "\n" +
-                "        /* To center the form title within a form module */\n" +
-                "        .hs_cos_wrapper .form-title {\n" +
-                "            text-align: center;\n" +
-                "        }\n" +
-                "\n" +
-                "        /* To center the form submit button */\n" +
-                "        .hs_submit {\n" +
-                "            text-align: center;\n" +
-                "        }" +
-                "textarea.hs-input,fieldset.form-columns-1,fieldset.form-columns-2,fieldset.form-columns-3{max-width: 980px}" +
-                "</style>"));
-        var $form = $iframe.contents().find('form');
-        var $button = $iframe.contents().find("input[type=submit]");
-
-        $form.submit(function (event) {
-            setTimeout(function () {
-                var invalidFields = $form.find('.invalid').length;
-                if (invalidFields > 0) {
-                    return;
-                }
-                window.scrollTo(0, document.body.scrollHeight);
-                showSpinner();
-                disableButton($button)
-                var check = setInterval(function () {
-                    if ($iframe.contents().find('div.submitted-message').length === 0) {
-                        return;
-                    }
-                    window.scrollTo(0, 0);
-                    hideSpinner();
-                    clearInterval(check);
-                }, 500);
-            }, 0)
-        });
-    });
-    
-    function showSpinner() {
-        $loading.show();
-    }
-
-    function hideSpinner() {
-        $loading.hide();
-    }
-
-    function disableButton($button) {
-        $button.prop("disabled", true);
-        $button.css("background-color", "#cccccc");
-        $button.css("border-color", "#6b6b6b");
-    }
+//    $(window).load(function () {
+//        var $iframe = $("#hs-form-iframe-0");
+//        var jqueryScriptBlock = document.createElement("script");
+//        jqueryScriptBlock.type = "text/javascript";
+//        jqueryScriptBlock.src = "https://code.jquery.com/jquery-2.2.4.min.js";
+//        $iframe.contents().find("head").append(jqueryScriptBlock);
+//        $iframe.contents().find("head")
+//            .append($("<style type='text/css'>form.hs-form,\n" +
+//                "        .hs_cos_wrapper .form-title {\n" +
+//                "            max-width: 980px;\n" +
+//                "            display: block;\n" +
+//                "            margin: 0 auto;\n" +
+//                "        }\n" +
+//                "\n" +
+//                "        /* To center the form title within a form module */\n" +
+//                "        .hs_cos_wrapper .form-title {\n" +
+//                "            text-align: center;\n" +
+//                "        }\n" +
+//                "\n" +
+//                "        /* To center the form submit button */\n" +
+//                "        .hs_submit {\n" +
+//                "            text-align: center;\n" +
+//                "        }" +
+//                "textarea.hs-input,fieldset.form-columns-1,fieldset.form-columns-2,fieldset.form-columns-3{max-width: 980px}" +
+//                "</style>"));
+//        var $form = $iframe.contents().find('form');
+//        var $button = $iframe.contents().find("input[type=submit]");
+//
+//        $form.submit(function (event) {
+//            setTimeout(function () {
+//                var invalidFields = $form.find('.invalid').length;
+//                if (invalidFields > 0) {
+//                    return;
+//                }
+//                window.scrollTo(0, document.body.scrollHeight);
+//                showSpinner();
+//                disableButton($button)
+//                var check = setInterval(function () {
+//                    if ($iframe.contents().find('div.submitted-message').length === 0) {
+//                        return;
+//                    }
+//                    window.scrollTo(0, 0);
+//                    hideSpinner();
+//                    clearInterval(check);
+//                }, 500);
+//            }, 0)
+//        });
+//    });
+//
+//    function showSpinner() {
+//        $loading.show();
+//    }
+//
+//    function hideSpinner() {
+//        $loading.hide();
+//    }
+//
+//    function disableButton($button) {
+//        $button.prop("disabled", true);
+//        $button.css("background-color", "#cccccc");
+//        $button.css("border-color", "#6b6b6b");
+//    }
 
 </script>
 </body>
