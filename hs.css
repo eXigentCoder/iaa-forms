@@ -912,7 +912,7 @@ textarea.hs-input[disabled] {
 .hs-form .hs-input,
 .hs-form textarea.hs-input {
     box-sizing: border-box;
-    max-width: 500px;
+    max-width: 1000px;
     width: 90%
 }
 
@@ -1149,7 +1149,7 @@ textarea.hs-input[disabled] {
     border: 0;
     padding: 0;
     margin: 0;
-    max-width: 500px
+    max-width: 1000px
 }
 
 .hs-form fieldset.form-columns-1 .hs-input {
